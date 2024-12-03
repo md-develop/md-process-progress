@@ -1,0 +1,21 @@
+{
+  "name": "md-process-progress",
+  "version": "1.0.0",
+  "description": "To visualize cyclic processes in the console",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/md-develop/md-process-progress.git"
+  },
+  "keywords": [
+    "process",
+    "progress",
+    "progressbar"
+  ],
+  "author": "Max Doodnikoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/md-develop/md-process-progress/issues"
+  },
+  "homepage": "https://github.com/md-develop/md-process-progress#readme"
+}
