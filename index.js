@@ -7,11 +7,13 @@
  * @returns 
  */
 module.exports = function processProgress(index, count) {
+    let readyRow = `\x1b[92m 100.00% ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ \x1b[0m `;
+    
     if (index || index === 0) {
         if (index % 25 === 0) {
             let perc = (index * 100 / count).toFixed(2)
-            perc = perc.length === 4 ? `0${perc}` : perc
-            let numb = perc.substring(0, 2)
+            perc = perc != '100.00' && perc.length === 4 ? `0${perc}` : perc
+            let numb = perc != '100.00' ? perc.substring(0, 2) : 100
             let line = buildLine(parseInt(numb))
 
             function buildLine(numb) {
@@ -34,11 +36,13 @@ module.exports = function processProgress(index, count) {
                     numb = String(numb)
                     let a = numb[0]
                     let b = numb[1]
-                    line = `${firstPart(parseInt(a))}${lastPart(parseInt(b))}`
-                    for (let index = 0; index < 9 - parseInt(a); index++) {
-                        line += blockEmp
+                    let c = numb[2] || null
+                    if (!c) {
+                        line = `${firstPart(parseInt(a))}${lastPart(parseInt(b))}`
+                        for (let index = 0; index < 9 - parseInt(a); index++) {
+                            line += blockEmp
+                        }
                     }
-
                 }
 
                 function firstPart(numb) {
@@ -68,11 +72,12 @@ module.exports = function processProgress(index, count) {
                 return line
             }
 
-            console.log(`\x1b[92m ${perc}% \x1b[93m ${line} \x1b[0m `);
+            if (perc != '100.00')
+                console.log(`\x1b[92m ${perc}% \x1b[93m ${line} \x1b[0m `);
             return perc
         }
     } else {
-        console.log(`\x1b[92m 100.00% ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ \x1b[0m `);
+        console.log(readyRow);
         return true
     }
 }
