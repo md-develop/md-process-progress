@@ -1,6 +1,6 @@
 {
   "name": "md-process-progress",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "To visualize cyclic processes in the console",
   "main": "index.js",
   "repository": {

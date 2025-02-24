@@ -4,10 +4,11 @@
  * F_N To visualize cyclic processes in the console
  * @param {Number} index - The number of the cycle iteration
  * @param {Count} count - The total amount of iterations
+ * @param {String} name - Name of process
  * @returns 
  */
-module.exports = function processProgress(index, count) {
-    let readyRow = `\x1b[92m 100.00% ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ \x1b[0m `;
+module.exports = function processProgress(index, count, name = null) {
+    let readyRow = `\x1b[92m 100.00% ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ ▮▮▮▮▮ :: ${name} \x1b[0m`;
     
     if (index || index === 0) {
         if (index % 25 === 0) {
@@ -73,7 +74,7 @@ module.exports = function processProgress(index, count) {
             }
 
             if (perc != '100.00')
-                console.log(`\x1b[92m ${perc}% \x1b[93m ${line} \x1b[0m `);
+                console.log(`\x1b[92m ${perc}% \x1b[93m ${line} :: ${name} \x1b[0m`);
             return perc
         }
     } else {
